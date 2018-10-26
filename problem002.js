@@ -1,5 +1,5 @@
 function stringRotate(a, b) {
-	if(b<0){
+	if(b<0 || isNaN(b)){
 		return "";
 	}
 	if(b>a.length){

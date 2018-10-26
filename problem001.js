@@ -8,7 +8,7 @@ function triangleArea(a, b, c) {
 	if((a>0 && b>0 && c>0)){
 	p=(a+b+c)/2;
 	pole=Math.sqrt(p*(p-a)*(p-b)*(p-c));
-	pole.toFixed(2);
+	pole = Math.round(pole * 100) / 100;
 	return pole;
 	}
 	else return -1;
