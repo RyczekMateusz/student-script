@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+		<style>
+		#edit{
+		background-color: yellow;
+		height: 750px;
+		width: auto;
+		}
+		</style>
+    </head>
+    <body>
+		<div id="edit" contenteditable="true" onclick="onClick()" onmouseleave="focusOut()">
+		Ale super zadanka :D
+		</div>
+		
+		<script>
+		var edit = document.getElementById('edit');
+		edit.innerHTML = localStorage.getItem('edit');
+		edit.addEventListener('blur', function() {
+		localStorage.setItem('edit', this.innerHTML);
+		});
+		
+		function onClick(){
+		var editable_elements = document.querySelectorAll("[contenteditable]");
+		editable_elements[0].setAttribute("contenteditable", true);
+		}
+		
+		function focusOut(){
+		var editable_elements = document.querySelectorAll("[contenteditable]");
+		editable_elements[0].setAttribute("contenteditable", false);
+		}
+
+		</script>
+    </body>
+</html>

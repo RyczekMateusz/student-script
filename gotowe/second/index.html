@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<title>Super blog XDD </title>
+		<meta charset="UTF-8">
+		<style> 
+		textarea {
+		width: 100%;
+		height: 150px;
+		padding: 12px 20px;
+		box-sizing: border-box;
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		background-color: #f8f8f8;
+		font-size: 16px;
+		resize: none;
+		}
+		</style>
+		
+		
+		
+	</head>
+
+	<body onload="preload()">
+		<div id="header">
+				Super blog
+		</div>
+		
+		<div id="counter">
+		
+		</div>
+		
+		<form >
+		<textarea id="nowyPost"></textarea>
+		<button type="button" onclick="potwierdzenie()">Dodaj Post!</button>
+		<form>
+		
+		<div id="voting">
+		Oceń lub usuń post nr: <input type="text" name="nr posta" id="indeks">
+		<button type="button" onclick="upvote()">+</button>
+		<button type="button" onclick="downvote()">-</button>
+		<button type="button" onclick="remove()">Remove</button>
+		</div>
+		
+		
+		<p>
+		Tutaj powinno byc coś mądrego |+ 0 |- 0
+		</p>
+		
+		<p>
+		mój drugi post |+ 0 |- 0
+		</p>
+		
+		<script>
+		function upvote(){
+		var indeks1 = document.getElementById('indeks').value;
+		indeks1--;
+		var paragraf = document.getElementsByTagName("p")[indeks1].innerHTML;
+		var res = paragraf.split(" |+ ");
+		var plusy = res[1];
+		plusy = plusy.split(" |- ");
+		var upVot= parseInt(plusy[0])+1;
+		var downVot = parseInt(plusy[1]);
+		document.getElementsByTagName("p")[indeks1].innerHTML = res[0] + " |+ " + upVot + " |- " +downVot;
+		}
+		
+		function downvote(){
+		var indeks1 = document.getElementById('indeks').value;
+		indeks1--;
+		var paragraf = document.getElementsByTagName("p")[indeks1].innerHTML;
+		var res = paragraf.split(" |+ ");
+		var plusy = res[1];
+		plusy = plusy.split(" |- ");
+		var upVot= parseInt(plusy[0]);
+		var downVot = parseInt(plusy[1])+1;
+		document.getElementsByTagName("p")[indeks1].innerHTML = res[0] + " |+ " + upVot + " |- " +downVot;
+		}
+		
+		
+		function preload(){
+		var liczPost = document.getElementsByTagName("p").length;
+		document.getElementById('counter').innerText = "liczba postów: " + liczPost;
+		}
+		
+		function potwierdzenie(){
+		var para = document.createElement("P");
+		var x = document.getElementById('nowyPost').value + " |+ 0 |- 0";
+		var t = document.createTextNode(x);
+		para.appendChild(t);
+		document.body.appendChild(para);
+		window.alert("Udało się dodać post!");
+		var liczPost = document.getElementsByTagName("p").length;
+		document.getElementById('counter').innerText = "liczba postów: " + liczPost;
+		}
+		
+		function remove(){
+		var indeks1 = document.getElementById('indeks').value;
+		indeks1--;
+		var paragraf = document.getElementsByTagName("p")[indeks1].innerHTML;
+		var p_list = document.getElementsByTagName("p");
+	    for(var i=p_list.length-1; i>=0; i--){
+	        var p = p_list[i];
+	        if(p.innerHTML === paragraf){
+	            p.parentNode.removeChild(p);
+	        }
+	    }
+		var liczPost = document.getElementsByTagName("p").length;
+		document.getElementById('counter').innerText = "liczba postów: " + liczPost;
+		}
+		
+		</script>
+	</body>
+
+</html>
